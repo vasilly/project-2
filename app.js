@@ -1,5 +1,5 @@
 // Code goes here
-
+cc = function (a){console.log(a)}
 (function() {
   var app = angular.module('gemStore', ['store-directives']);
 
@@ -15,15 +15,16 @@
     this.products = gems;
   });
 
-  
+
   app.controller("ReviewController", function(){
 
     this.review = {};
-  
+
     this.addReview = function(product){
       this.review.createdOn = Date.now();
       product.reviews.push(this.review);
       this.review = {};
+      cc("this "+this)
     };
 
   });
