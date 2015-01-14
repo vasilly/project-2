@@ -15,6 +15,7 @@
 
   app.controller('StoreController', function() {
     this.products = gems;
+    console.log(this)
 
   });
 
