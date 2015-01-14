@@ -24,7 +24,8 @@
       this.review.createdOn = Date.now();
       product.reviews.push(this.review);
       this.review = {};
-      console.log(this)
+      console.log(this);
+      alert(2)
     };
 
   });
