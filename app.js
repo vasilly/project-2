@@ -37,7 +37,7 @@ console.log(product)
       product.reviews.push(this.review);
       this.review = {};
 
-var c=document.getElementById("c0");
+var c=document.getElementById(product.cId);
 var ctx=c.getContext("2d");
 ctx.rect(0,0,c.width,c.height);
 ctx.stroke();
@@ -47,6 +47,7 @@ ctx.stroke();
 
   var gems = [{
     name: 'Azurite',
+    cId:'c0',
     description: "Some gems have hidden qualities beyond their luster, beyond their shine... Azurite is one of those gems.",
     shine: 8,
     price: 110.50,
@@ -71,6 +72,8 @@ ctx.stroke();
     }]
   }, {
     name: 'Bloodstone',
+        cId:'c1',
+
     description: "Origin of the Bloodstone is unknown, hence its low value. It has a very high shine and 12 sides, however.",
     shine: 9,
     price: 22.90,
@@ -95,6 +98,8 @@ ctx.stroke();
     }]
   }, {
     name: 'Zircon',
+        cId:'c2',
+
     description: "Zircon is our most coveted and sought after gem. You will pay much to be the proud owner of this gorgeous and high shine gem.",
     shine: 70,
     price: 1100,
