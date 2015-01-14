@@ -10,7 +10,10 @@
       this.imageIndex = imageNumber || 0;
     };
       console.log(this);
-
+var c=document.getElementById("main");
+var ctx=c.getContext("2d");
+ctx.rect(0,0,c.width,c.height);
+ctx.stroke();
 
   });
 
@@ -30,7 +33,7 @@
       product.reviews.push(this.review);
       this.review = {};
 
-var c=document.getElementById("c0");
+var c=document.getElementById("main");
 var ctx=c.getContext("2d");
 ctx.rect(0,0,c.width,c.height);
 ctx.stroke();
