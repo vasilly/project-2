@@ -9,11 +9,12 @@
       console.log(imageNumber);
       this.imageIndex = imageNumber || 0;
     };
+      console.log(this);
+
   });
 
   app.controller('StoreController', function() {
     this.products = gems;
-      console.log(this);
 
   });
 
