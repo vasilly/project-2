@@ -1,5 +1,5 @@
 // Code goes here
-cc = function (a){console.log(a)}
+
 (function() {
   var app = angular.module('gemStore', ['store-directives']);
 
@@ -24,7 +24,6 @@ cc = function (a){console.log(a)}
       this.review.createdOn = Date.now();
       product.reviews.push(this.review);
       this.review = {};
-      //cc("this "+this)
     };
 
   });
