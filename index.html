@@ -35,12 +35,12 @@
         <!-- $index Practice:  -->
         <h3>Gem #{{$index + 1}}: {{product.name | uppercase}}<em class="pull-right">{{product.price | currency}}</em>
         </h3>
-
+        <canvas id="'c'+{{$index}}"></canvas>
         <!-- Image Gallery  -->
         <div ng-show="product.images.length" ng-controller="GalleryController as gallery">
           <div class="img-wrap">
             <img ng-src="{{product.images[gallery.imageIndex]}}" class="img-thumbnail center-block" />
-        <canvas id="{{$index}}"></canvas>
+
 
           </div>
           <ul class="img-thumbnails clearfix">
