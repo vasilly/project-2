@@ -8,12 +8,13 @@
     this.setCurrent = function(imageNumber) {
       console.log(imageNumber);
       this.imageIndex = imageNumber || 0;
-    };
-      console.log(this);
-var c=document.getElementById("main");
+      var c=document.getElementById("c0");
 var ctx=c.getContext("2d");
 ctx.rect(0,0,c.width,c.height);
 ctx.stroke();
+    };
+      console.log(this);
+
 
   });
 
@@ -33,7 +34,7 @@ ctx.stroke();
       product.reviews.push(this.review);
       this.review = {};
 
-var c=document.getElementById("main");
+var c=document.getElementById("c");
 var ctx=c.getContext("2d");
 ctx.rect(0,0,c.width,c.height);
 ctx.stroke();
