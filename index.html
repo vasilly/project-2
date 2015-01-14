@@ -40,7 +40,7 @@
         <div ng-show="product.images.length" ng-controller="GalleryController as gallery">
           <div class="img-wrap">
             <img ng-src="{{product.images[gallery.imageIndex]}}" class="img-thumbnail center-block" />
-        <canvas id="{{gallery.imageIndex}}"></canvas>
+        <canvas id="{{'c'+(i++||0)}}"></canvas>
 
           </div>
           <ul class="img-thumbnails clearfix">
