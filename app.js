@@ -25,11 +25,10 @@ ctx.stroke();
   });
 
 
-  app.controller("ReviewController", function(aaa){
+  app.controller("ReviewController", function(){
 
     this.review = {};
-console.log("aaa")
-console.log(aaa)
+
 console.log("this")
 console.log(this)
     this.addReview = function(product){
