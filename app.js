@@ -29,9 +29,10 @@ ctx.stroke();
 
     this.review = {};
 
-console.log("this")
-console.log(this)
+
     this.addReview = function(product){
+      console.log("product")
+console.log(product)
       this.review.createdOn = Date.now();
       product.reviews.push(this.review);
       this.review = {};
