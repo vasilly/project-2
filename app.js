@@ -30,9 +30,9 @@
       product.reviews.push(this.review);
       this.review = {};
 
-      var c=document.getElementById("c0");
+var c=document.getElementById("c0");
 var ctx=c.getContext("2d");
-ctx.rect(20,20,150,100);
+ctx.rect(0,0,c.width,c.height);
 ctx.stroke();
     };
 
