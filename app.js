@@ -7,8 +7,8 @@
     this.imageIndex = 0;
     this.setCurrent = function(imageNumber) {
       console.log(imageNumber);
-      this.imageIndex = imageNumber || 0;
-      var c=document.getElementById("c0");
+      this.imageIndex = imageNumber++ || 0;
+var c=document.getElementById("c0");
 var ctx=c.getContext("2d");
 ctx.rect(0,0,c.width,c.height);
 ctx.stroke();
