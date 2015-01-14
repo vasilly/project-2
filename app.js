@@ -25,10 +25,13 @@ ctx.stroke();
   });
 
 
-  app.controller("ReviewController", function(){
+  app.controller("ReviewController", function(aaa){
 
     this.review = {};
-
+console.log("aaa")
+console.log(aaa)
+console.log("this")
+console.log(this)
     this.addReview = function(product){
       this.review.createdOn = Date.now();
       product.reviews.push(this.review);
