@@ -37,11 +37,10 @@
         </h3>
 
         <!-- Image Gallery  -->
-        <script>var iii=0</script>
         <div ng-show="product.images.length" ng-controller="GalleryController as gallery">
           <div class="img-wrap">
             <img ng-src="{{product.images[gallery.imageIndex]}}" class="img-thumbnail center-block" />
-        <canvas id="{{'c'+(iii++)}}"></canvas>
+        <canvas id="{{gallery.imageIndex}}"></canvas>
 
           </div>
           <ul class="img-thumbnails clearfix">
