@@ -37,6 +37,7 @@
         </h3>
 
         <!-- Image Gallery  -->
+        <canvas id="{{product.images[gallery.imageIndex]}}"></canvas>
         <div ng-show="product.images.length" ng-controller="GalleryController as gallery">
           <div class="img-wrap">
             <img ng-src="{{product.images[gallery.imageIndex]}}" class="img-thumbnail center-block" />
