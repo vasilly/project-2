@@ -10,12 +10,11 @@
       this.imageIndex = 1//imageNumber++ || 0;
 var c=document.getElementById("c0");
 var ctx=c.getContext("2d");
+ctx.strokeStyle = 'red';
 ctx.rect(0,0,c.width,c.height);
 ctx.stroke();
     };
       console.log(this);
-
-
   });
 
   app.controller('StoreController', function() {
