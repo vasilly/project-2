@@ -1,0 +1,22 @@
+.show {
+  -o-transition: opacity 1.5s;
+  -moz-transition: opacity 1.5s;
+  -webkit-transition: opacity 1.5s;
+  transition: opacity 1.5s;
+  opacity: 1;
+  max-height: 10000px;
+
+}
+.hide {
+  transition: transform 0.1s;
+  -webkit-transition: -webkit-transform 0.1s;
+  -o-transition: opacity 0.1s;
+  -moz-transition: opacity 0.1s;
+  -webkit-transition: opacity 0.1s;
+  transition: opacity 0.1s;
+  opacity: 0;
+  max-height: 0;
+  max-width: 0;
+  -webkit-transform: scale(0.050) translate3d(-300%, -300%, 0);
+  -webkit-transition: -webkit-transform 200ms ease, opacity 1000ms ease;
+}

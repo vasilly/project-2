@@ -1,0 +1,57 @@
+/*
+  Todd Motto Labs
+  URL: www.toddmotto.com
+*/
+/*------------------------------------*\
+    RESET
+\*------------------------------------*/
+
+*, *:after, *:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+body {
+  font: 2em/1.4 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+/*------------------------------------*\
+    STRUCTURE
+\*------------------------------------*/
+
+.wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.header {
+  padding: 15px 25px;
+  margin: 0 0 20px;
+  background: #FFF;
+  overflow: hidden;
+}
+
+.right {
+  /*margin-left: 80%;*/
+
+  position: relative;
+  float: right;
+}
+.nav {
+  float: right;
+  margin: 1em 0;
+  list-style: none;
+}
+
+/*in index.html*/
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

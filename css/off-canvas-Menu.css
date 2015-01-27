@@ -1,0 +1,32 @@
+  .menuMain-page {
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    overflow: hidden;
+    background: lightgrey;
+    left: 100%;
+    padding: 2em;
+    width: 100%;
+    -webkit-transition: linear all .1s;
+    transition: linear all .1s;
+  }
+  .menuMain-page.open {
+    left: 50%;
+  }
+  .menuMainBtn {
+    position: absolute;
+    top: 22px;
+    right: 20px;
+    padding: 4px 2px;
+    opacity: .7;
+    border: 1px solid grey;
+    border-radius: 10px;
+    -webkit-transition: linear all .05s;
+    transition: linear all .05s;
+    cursor: pointer;
+  }
+
+  .menuMainBtn-Hotdog {
+    position: relative;
+    font-size: 3em;
+  }

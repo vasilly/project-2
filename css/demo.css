@@ -1,0 +1,65 @@
+/*
+  Todd Motto Labs
+  URL: www.toddmotto.com
+*/
+/*------------------------------------*\
+    JS Event Handlers
+\*------------------------------------*/
+
+body {
+  background: #34495E;
+  color: #FFF;
+  font-weight: 900;
+  font-size: 15px;
+}
+.main {
+  margin: 0 auto;
+  max-width: 400px;
+}
+/* Links */
+
+#links {
+  list-style: none;
+}
+.toggleDiv {
+  cursor: pointer;
+  background: #1ABC9C;
+  padding: 15px;
+  margin: 5px 0;
+  width:40%;
+}
+.dynamic-success {
+  /*background:#16A085 url(../img/success.svg) no-repeat 98% center;*/
+
+  background: #16A085
+}
+/* Generation form */
+
+.main-block {
+  background: #ECEFF1;
+  padding: 25px;
+  margin: 25px 0;
+  border-radius: 5px;
+}
+.main-header {
+  text-align: center;
+  color: #34495E;
+  font-size: 22px;
+}
+.main-input {
+  text-align: center;
+  font-size: 1.2em;
+  border: 0;
+  border-radius: 5px;
+  padding: 15px 15px;
+  margin: 15px 0 0;
+  width: 100%;
+  background: #FFF;
+  color: #34495E;
+  outline: 0;
+  border: 1px solid  #B2D1D1;
+}
+.main-input:focus {
+  border: 1px solid #1ABC9C;
+}
+

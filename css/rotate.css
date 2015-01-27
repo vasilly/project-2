@@ -1,0 +1,45 @@
+  .icon {
+    transition: transform 0.2s linear;
+    transform-style: preserve-3D;
+    font-size: 1.4em;
+    margin-right: 1em;
+    display: inline-block;
+  }
+  .rotate45 {
+    transform: rotate(45deg);
+  }
+  .rotate90 {
+    transition: transform 0.5s;
+    -webkit-transform: rotate(90deg);
+    -webkit-transition: -webkit-transform 0.5s;
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    /*transform-origin: 50% 50%;*/
+    /*...translate(-10px, 50%)*/
+  }
+  .rotate90minus {
+    transition: transform 0.5s;
+    -webkit-transform: rotate(-90deg);
+    -webkit-transition: -webkit-transform 0.5s;
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+  }
+  .rotate180 {
+    transform: rotate(270deg);
+  }
+  .off {
+    background: #16A085;
+    border-left: 2px solid red;
+  }
+  .on {
+    border-left: 2px solid green;
+    border-left: 2px solid #00FF00;
+  }
+  .slide {
+    transform: translateX(5em) rotate(90deg);
+  }
+  button {
+    /*display: block;*/
+
+    margin: auto;
+  }

@@ -1,77 +1,133 @@
 <!DOCTYPE html>
-<html ng-app="asideApp">
-  <head>
-    <link data-require="bootstrap-css@3.2.0" data-semver="3.2.0" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="https://rawgit.com/dbtek/angular-aside/master/dist/css/angular-aside.css"/>
-    <link rel="stylesheet" href="style.css"/>
-    <script src="https://code.angularjs.org/1.2.27/angular.js"></script>
-    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.0.min.js"></script>
-    <script src="https://rawgit.com/dbtek/angular-aside/master/dist/js/angular-aside.js"></script>
-    <script src="script.js"></script>
-  </head>
+<html lang="en">
 
-  <body ng-controller="MainCtrl">
-    <div class="jumbotron panel panel-default">
+<head>
+  <meta charset="UTF-8">
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> -->
 
-      <button type="button" class="btn btn-default btn-lg pull-right" ng-click="openAside('left')">
-        <span class="glyphicon glyphicon-align-justify"></span> Left
-      </button>
+  <title>Document</title>
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/demo.css" rel="stylesheet">
+  <link href="css/rotate.css" rel="stylesheet">
+  <link href="css/growler.css" rel="stylesheet">
+  <link href="css/hide.css" rel="stylesheet">
+  <link href="css/off-canvas-Menu.css" rel="stylesheet">
+  <style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 2em;
+  }
+  </style>
 
-      <h1>Angular Aside</h1>
-      <p>
-        Off canvas side menu to use with ui-bootstrap. Extends ui-bootstrap's $modal provider.
-      </p>
-      <p>
-        <a href="https://github.com/dbtek/angular-aside" class="btn btn-primary btn-lg" id="downloadbtn">
-          <span class="glyphicon glyphicon-download"></span> Download
-        </a>
-        <br />
-        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://github.com/dbtek/angular-aside" data-via="dbtek">Tweet</a>
-        <iframe src="http://ghbtns.com/github-btn.html?user=dbtek&repo=angular-aside&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="107" height="20"></iframe>
-      </p>
-      <div>
-        <ul class="text-center about-links list-inline">
-          <li class="love">
-            made with <i class="fa fa-heart"></i> by <a href="http://twitter.com/dbtek" onclick="_gaq.push(['_trackEvent', 'Outbound Link', 'View twitter account']);">@dbtek</a>
-          </li>
-          <li class="lab">
-            <i class="fa fa-flask"></i>
-            <a href="https://github.com/dbtek/angular-aside">github project</a>
-          </li>
-          <li class="cypher">
-            <i class="fa fa-code"></i>
-            <a href="http://opensource.org/licenses/MIT">license: MIT</a>
-          </li>
+</head>
+
+<body>
+  <h1 id="hh" class="show">the heading</h1>
+
+  <div class="menuMain-page ">
+    <ul id="links">
+
+      <ul id="left ">
+        <div class="toggleDiv noselect off">
+          <div class="icon  rotate90">II</div>Build
+        </div>
+        <ul class="menu-list hide">
+          <div data-name="engine" class="toggleDiv noselect off ">
+            <div class="icon   right">I</div> engines on </div>
+          <div data-name="crew" class="toggleDiv noselect off ">
+            <div class="icon  right">I</div> buy engines</div>
+          <div data-name="ship" class="toggleDiv noselect off ">
+            <div class="icon   right">I</div>buy ship
+          </div>
         </ul>
-      </div>
+      </ul>
+
+      <ul id="right">
+        <div class="toggleDiv noselect off">
+          <div class="icon  rotate90">II</div>Menu
+        </div>
+        <ul class="menu-list hide hidden">
+          <div data-name="engine1" class="toggleDiv noselect off ">
+            <div class="icon   right">I</div> engines on </div>
+          <div data-name="crew1" class="toggleDiv noselect off ">
+            <div class="icon  right">I</div> buy engines</div>
+          <div data-name="ship1" class="toggleDiv noselect off ">
+            <div class="icon   right">I</div>buy ship
+          </div>
+        </ul>
+      </ul>
+
+    </ul>
+
+  </div>
+
+  <div class="menuMainBtn noselect">
+    <div id="" class="menuMainBtn-Hotdog rotate90">III</div>Menu
+  </div>
+
+
+
+  <div class="box">
+    <!-- stuff -->
+    <div class="growler bet_time">
+      <span>warning you are mining.</span>
+      <br>
+      <span>colors</span>
     </div>
-    <div class="jumbotron panel panel-default">
-      <h2>Demo</h2>
-      <p>
-        <span class="pull-left">
-          <button type="button" class="btn btn-default btn-lg" ng-click="openAside('left')">
-            <span class="glyphicon glyphicon-align-justify"></span> Left
-          </button>
-          <button type="button" class="btn btn-default btn-lg" ng-click="openAside('top')">
-            Up <span class="glyphicon glyphicon-arrow-down"></span>
-          </button>
-        </span>
-        <span class="pull-right">
-          <button type="button" class="btn btn-default btn-lg" ng-click="openAside('bottom')">
-            Down <span class="glyphicon glyphicon-arrow-up"></span>
-          </button>
-          <button type="button" class="btn btn-default btn-lg" ng-click="openAside('right')">
-            Right <span class="glyphicon glyphicon-align-justify"></span>
-          </button>
-        </span>
-      </p>
-      <div class="clearfix"></div>
-      <br />
-      <!-- plunk-hr -->
+  </div>
 
-    </div>
+  <script>
+  var currentLevel = parseInt(localStorage.currentLevel, 10) || 0;
+  cc = function(a) {
+      console.log(a)
+    }
+    //http://stackoverflow.com/questions/10474676/get-immediate-first-child-element
+    /*
+caniuse:
+~= IE8
+  querySelector/querySelectorAll ... only simple queries for IE8
+>=IE9
+  canvas
+  firstChild
+  children  (html tags only)
+  childNodes (also text and attributes)
+  getElementsByClassName
+  transform
+  get/setAttribute
+>=IE10
+  transition
+  animation / keyframes
+  performance.now()
+  classList.add("bar");+
+    .remove("foo");    -
+    .contains("foo");  ?
+    .toggle("active"); on-off
+*/
+  var menuWrapper = document.getElementsByClassName("menuMainBtn")[0]
+  menuWrapper.onclick = function() {
 
+    var icon = this.children[0]
+    icon.classList.toggle('rotate90');
+    icon.classList.toggle('rotate90minus');
+    document.getElementById("hh").classList.toggle("show")
+    document.getElementById("hh").classList.toggle("hide")
+    document.getElementsByClassName("menuMain-page")[0].classList.toggle('open'); // clicking icon toggles menu
+  };
+  // window.onload = function() {
+  var buttons = document.getElementsByClassName('rotate-Wrapper');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].onclick = function() {
+      var icon = this.children[0] //.firstChild, .childNodes[0]
+      icon.classList.toggle('rotate90');
+      icon.classList.toggle('rotate90minus');
+    };
+  }
+  // }
+  </script>
 
-  </body>
+  <script src="js/rotate.js">
+  // http://toddmotto.com/labs/js-event-handlers/
+  </script>
+</body>
+
 </html>
