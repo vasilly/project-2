@@ -1,17 +1,17 @@
   .menuMain-page {
     position: absolute;
     top: 0px;
-    height: 100%;
     overflow: hidden;
     background: lightgrey;
-    left: 100%;
     padding: 2em;
+    left: 200%;
     width: 100%;
+    height: 200%;
     -webkit-transition: linear all .1s;
     transition: linear all .1s;
   }
   .menuMain-page.open {
-    left: 50%;
+    left: 5%;
   }
   .menuMainBtn {
     position: absolute;

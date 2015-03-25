@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FriBikeMain</title>
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
+    <style>
+    /*gmaps*/
+
+    button {
+        /*-webkit-appearance: none;*/
+    }
+
+    button:focus {
+        outline: 0 !important;
+    }
+
+    html {
+        height: 100%;
+        width: 100%;
+        margin: 0 auto 0;
+    }
+
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0
+    }
+
+    html,
+    body {
+        height: 100%;
+        /*width: 100%;*/
+
+        margin: 0px;
+        padding: 0px
+    }
+
+    body {
+        /* http://wallpaperscraft.com/download/bicycle_field_clouds_silence_evening_decline_sky_61136/2560x1600
+   */
+
+        background: transparent url('img/sky2560x1600.jpg') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        font-family: 'Poiret One', cursive;
+        color: white;
+    }
+
+    h1 {
+        text-align: center;
+        font-weight: 800;
+        font-size: 4em;
+    }
+
+    #c {
+        width: 100% border: 1px solid red;
+    }
+
+    #map-canvas {
+        height: 100%;
+        width: 45%;
+        margin: 0px;
+        padding: 0px
+    }
+
+    .card #map-canvas {
+        transition: all 300ms;
+        /* border-radius: 10px 10px 0 0; */
+
+        width: 100%;
+        height: 500px;
+    }
+    /**/
+
+    h1 {
+        text-align: center;
+        font-weight: 800;
+        font-size: 4em;
+    }
+
+    .card {
+        border-bottom: 1px solid white;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+        width: 90%;
+        position: relative;
+        margin: 40px auto 40px;
+        /* overflow:hidden; */
+    }
+
+    @media (min-width: 750px) {
+        .card #googleMap {
+            /* height: 300px; */
+        }
+        .card {
+            border-radius: 50% width: 30%;
+        }
+    }
+
+    .floatright,
+    .floatleft {
+        /*width: 100%;*/
+        /* height: 300px; */
+    }
+
+    @media (min-width: 750px) {
+        .floatright {
+            float: right;
+            /* left:20px; */
+
+            width: 47%;
+            margin-right: 20px;
+        }
+        .floatleft {
+            float: left;
+            /* left:20px; */
+
+            width: 47%;
+            margin-left: 20px;
+        }
+    }
+
+    .card .info button {
+        transition: all 100ms;
+        -webkit-appearance: none;
+        border: none;
+        border-bottom: 1px solid grey;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+        color: white;
+        font-size: 14px;
+        width: 60px;
+        height: 60px;
+        /* display: block; */
+        /* margin: 0 auto; */
+    }
+
+    .card .info button:active {
+        box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.4);
+        border-bottom-color: transparent;
+    }
+
+    .blue {
+        background-color: #6fd2fc;
+    }
+
+    .green {
+        background-color: green;
+    }
+
+    .info input {
+        border: 1px solid #CCC;
+        color: #999;
+        width: 100%;
+        margin: 5px 0 15px;
+        padding: 5px 10px;
+    }
+
+    #start {
+        border-left: 1px solid red;
+    }
+
+    #end {
+        border-left: 1px solid green;
+    }
+    </style>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <h1>Bike Trip Planner</h1>
+    <div class="card floatleft">
+        <div id="map-canvas"></div>
+        <div id="input-panel">
+            <div class="info">
+                <input id="start" class="" type="text" placeholder="Flinders Street Station, VIC, Australia " value="Flinders Street Station, VIC, Australia">
+                <input id="end" class="" type="text" placeholder="Chapel Street, VIC, Australia">
+                <button id="go" class=" green" onclick="calcRoute(latLongArray);">Go!</button>
+                <button id="go2" class=" blue" onclick="calcRoute(latLongArray);"><i class="fa fa-refresh  fa-2x"></i></button>
+                <button id="help" class=" blue" onclick=""><i class="fa fa-question  fa-2x"></i></button>
+            </div>
+        </div>
+    </div>
+    <div id="slopeMap" class="card floatright">
+        <canvas id="canvas3D"></canvas>
+        <!-- ➜ -->
+        <div class="info">
+            <button class="" id="left"><i class="fa fa-arrow-left  fa-2x"></i></button>
+            <button class="" id="right"><i class="fa fa-arrow-right  fa-2x"></i></button>
+            <button class="" id="up"><i class="fa fa-arrow-up  fa-2x"></i></button>
+            <button class="" id="down"><i class="fa fa-arrow-down  fa-2x"></i></button>
+            <button class="" id="zoomIN"><i class="fa fa-search-plus  fa-2x"></i></button>
+            <button class="" id="zoomOUT"><i class="fa fa-search-minus  fa-2x"></i></button>
+            <div id="travel-distance">
+                Distance:
+                <span id="distance"></span>
+            </div>
+            <div>
+                Travel Time:
+                <span id="travel-time"></span>
+            </div>
+            <div>
+                Meters to Climb:
+                <span id="climb"></span>
+            </div>
+            <div>
+                Meters of Descent:
+                <span id="descent"></span>
+            </div>
+            <div>fps:<span id="m1"></span>
+            </div>
+        </div>
+    </div>
+    <script>
+    // CANVAS------------------------------------------------------------
+    function cc(a) {
+        console.log(a)
+    }
+
+    function $id(idTAG) {
+        return document.getElementById(idTAG)
+    }
+    var X = 0,
+        Y = 1,
+        Z = 2
+        // data as [ [ x, x1, x2, ... ], [y, y1, y2, ... ], ... ]
+    function gMaps3array(elevations, dx) { // [ [x,...], [y,..], ... ]
+        var xx = [],
+            yy = [],
+            zz = [],
+            el, X = 0,
+            Y = 1,
+            Z = 2
+        for (var i = 0, el; i < elevations.length; i++) {
+            el = elevations[i]
+            xx.push(el.location.lng())
+            yy.push(el.location.lat())
+            zz.push(el.elevation)
+        };
+        var slopes = [0]
+        for (var i = 1; i < elevations.length; i++) {
+            var dy = zz[i] - zz[i - 1]
+            slopes.push(dy / dx * 100)
+        };
+        return [xx, yy, zz, slopes]
+    };
+
+    function range(array) {
+        return max(array) - min(array)
+    }
+
+    function min(array) {
+        return Math.min.apply(Math, array)
+    }
+
+    function max(array) {
+        return Math.max.apply(Math, array);
+    }
+
+    function normalize(data8) {
+            var X2, Y2, Z2,
+                X = 0,
+                Y = 1,
+                Z = 2,
+                COLORS, SLOPE = 3
+            var range0 = max([range(data8[X]), range(data8[Y])]); //keep aspect ratio
+            var rangeEl = range(data8[Z])
+            var rangeSl = range(data8[SLOPE])
+            var min1 = -10 // screen coordinates, will be multiplied by 10 to be in range -100,100px
+            var minX = min(data8[X])
+            var minY = min(data8[Y])
+            var minZ = min(data8[Z])
+            var minEl = min(data8[SLOPE])
+            var r = 100,
+                g = 100,
+                b = 100
+            var dt = 0
+            X2 = data8[X].map(function(x) {
+                return 20 / range0 * (x - minX) + min1
+            })
+            Y2 = data8[Y].map(function(x) {
+                return 20 / range0 * (x - minY) + min1
+            })
+            Z2 = data8[Z].map(function(x) {
+                return 10 / rangeEl * (x - minZ) + 0
+            })
+            COLORS = data8[SLOPE].map(function(x) {
+                    return slopeColor(x)
+                }) //rgb
+            return [X2, Y2, Z2, COLORS]
+        }
+        // function data2range(array, range) {
+        //   var min = Math.min.apply(Math, array);
+        //   var max = Math.max.apply(Math, array);
+        //   var min1 = range[0]
+        //   var max1 = range[1]
+        //   return array.map(function(x) {
+        //     return toRange(min, max, min1, max1, x)
+        //   })
+        // }
+        // d8 = data8.map( function(x){ return data2range(x, [-10,10]) })
+        // data9.each( function(){ } )
+        //-------------
+    var canvas0 = document.getElementById("canvas3D");
+    canvas0.width = innerWidth * .4;
+    canvas0.height = 500;
+    var t = canvas0.getContext("2d"),
+        f = 200,
+        mX = 0,
+        mY = 0,
+        π = Math.PI,
+        τ = 2 * π,
+        sqrt = Math.sqrt,
+        cos = Math.cos,
+        sin = Math.sin,
+        rnd = Math.round,
+        centerX = canvas0.width / 2,
+        centerY = canvas0.height / 2,
+        totalθ = 0,
+        totalφ = 0,
+        zoom = 2,
+        zoomTarget = 1.6,
+        previous,
+        /* counters for animation in x,y plane+zoom */
+        animationSteps = 20,
+        ix = 0,
+        iy = animationSteps,
+        izoom = animationSteps,
+        angleIncr = π / 6 / (animationSteps),
+        zoomIncr = 0.99,
+        xIncr = angleIncr,
+        yIncr = angleIncr * 8,
+        timer = 0;
+
+    function timerON() {
+        if (!timer) {
+            timer = setInterval(main, 0)
+        }
+    }
+
+    function timerOFF() {
+        if (timer) {
+            clearInterval(timer);
+            timer = 0
+        }
+    }
+    $id("right").onclick = function() {
+        if (!ix) {
+            xIncr = angleIncr
+            ix += animationSteps;
+            timerON()
+        }
+    }
+    $id("left").onclick = function() {
+        if (!ix) {
+            xIncr = -angleIncr
+            ix += animationSteps;
+            timerON()
+        }
+    }
+    $id("up").onclick = function() {
+        if (!iy) {
+            yIncr = angleIncr
+            iy += animationSteps;
+            timerON()
+        }
+    }
+    $id("down").onclick = function() {
+        if (!iy) {
+            yIncr = -angleIncr
+            iy += animationSteps;
+            timerON()
+        }
+    }
+    $id("zoomIN").onclick = function() {
+        if (!izoom) {
+            zoomIncr = 1.01
+            izoom += animationSteps;
+            timerON()
+        }
+    }
+    $id("zoomOUT").onclick = function() {
+        if (!izoom) {
+            zoomIncr = 0.99
+            izoom += animationSteps;
+            timerON()
+        }
+    }
+
+    canvas0.onmousewheel = function(e) { // chrome only
+        // if(!loop)return null
+        if (e.wheelDelta > 0) zoom *= 1.1
+        else if (e.wheelDelta < 0) zoom /= 1.1
+        if (zoom > maxzoom) zoom = maxzoom
+        if (zoom < minzoom) zoom = minzoom
+    }
+    canvas0.onmousemove = function(e) {
+        mX = e.clientX;
+        mY = e.clientY;
+    }
+    canvas0.addEventListener("click", function(event) {
+        cordinate_x = event.offsetX;
+        cordinate_y = event.offsetY;
+        console.log("x,y: ( " + event.offsetX + ", " + event.offsetY + " )")
+    });
+
+    function fnPlane(x, y) {
+        return 0
+    }
+
+    function createGrid(fn) {
+        var p = [],
+            rowlength = 0,
+            gridx = 10,
+            gridy = 10,
+            detail = 1;
+        for (var x = -gridx; x < gridx; x += detail)
+            for (var y = -gridy; y < gridy; y += detail) {
+                if (x === -gridx) rowlength++
+                    p.push({
+                        x: x * 10,
+                        y: y * 10,
+                        z: 20 * fn(x, y)
+                    })
+            }
+        p.rowlength = rowlength
+        return p
+    };
+
+    function createSlope(arr) {
+        var p = [],
+            rowlength = arr[0].length;
+        for (var i = 0; i < rowlength; i++) {
+            p.push({
+                x: arr[X][i] * 10,
+                y: arr[Y][i] * 10,
+                z: arr[Z][i] * 10,
+                color: arr[3][i]
+            })
+        } //top row
+        for (var i = 0; i < rowlength; i++) {
+            p.push({
+                x: arr[X][i] * 10,
+                y: arr[Y][i] * 10,
+                z: 0
+            })
+        } //bottom row
+        p.rowlength = rowlength
+        return p
+    };
+
+    function rotate(plane) {
+        var
+            θ = totalθ,
+            φ = totalφ, //=π/4
+            cosθ = cos(θ),
+            sinθ = sin(θ),
+            cosφ = cos(φ),
+            sinφ = sin(φ),
+            pnt, Scale, x1, y1, z1, x, y, z;
+        for (var i = plane.length; i--;) {
+            pnt = plane[i];
+            x = pnt.x;
+            y = pnt.y;
+            z = pnt.z;
+            x1 = x * cosθ - y * sinθ; //rotate XY, about Z
+            y1 = x * sinθ + y * cosθ;
+            x = x1
+            y = y1
+            y = y1
+            z1 = z * cosφ - y * sinφ; //rotate YZ, about X
+            y1 = z * sinφ + y * cosφ;
+            Scale = 1 / (1 + z1 / f) * zoom;
+            pnt._x = centerX + x1 * Scale;
+            pnt._y = centerY + y1 * Scale;
+        }
+    }
+
+    function draw(p) {
+        t.strokeStyle = "rgb(20,50,20)";
+        t.beginPath();
+        var rowlength = p.rowlength
+        t.moveTo(p[0]._x, p[0]._y);
+        var l = rowlength;
+        for (var i = 1; i < p.length - rowlength; i++)
+            if (i % rowlength) {
+                var beneath = i + rowlength;
+                if (p[i].color) {
+                    t.beginPath();
+                    t.moveTo(p[i]._x, p[i]._y);
+                }
+                t.lineTo(p[i]._x, p[i]._y);
+                t.lineTo(p[beneath]._x, p[beneath]._y);
+                t.lineTo(p[beneath - 1]._x, p[beneath - 1]._y);
+                t.lineTo(p[i - 1]._x, p[i - 1]._y);
+                t.moveTo(p[i]._x, p[i]._y);
+                if (p[i].color) {
+                    t.fillStyle = p[i].color;
+                    t.fill();
+                }
+                // t.fillText(i, p[i]._x, p[i]._y)
+            } else t.moveTo(p[i]._x, p[i]._y);
+        t.stroke()
+        var now = Date.now();
+        dt = now - (previous || 0)
+            //t.fillText("draw time: "+dt, 100, 100)
+            //t.fillText("angle θ: "+(totalθ/π), 100, 120)
+            //t.fillText(targetAngle, 100, 140)
+        previous = now
+    }
+
+    function drawCircle(x, y, color, radius, txt) {
+        var oldColor = t.fillStyle
+        t.beginPath();
+        t.arc(x, y, radius, 0, 2 * Math.PI, false);
+        t.fillStyle = color;
+        t.fill();
+        t.fillStyle = "white";
+        t.fillText(txt, x - radius / 3, y + radius / 3)
+        t.fillStyle = oldColor;
+    }
+
+    function drawLine(x1, y1, x2, y2, color) {
+        var oldColor = t.strokeStyle
+        t.beginPath();
+        t.moveTo(x1, y1);
+        t.lineTo(x2, y2);
+        t.strokeStyle = color;
+        t.stroke();
+        t.strokeStyle = oldColor;
+    }
+    c1 = 0
+    var start_time = +new Date()
+    var fps
+
+    function main() {
+        fps = 1000 / (+new Date() - start_time);
+        start_time = +new Date()
+        $id("m1").innerHTML = Math.round(fps)
+
+
+        // $id("m1").innerHTML = " " + c1++ + " ix: " + ix + " iy: " + iy + " izoom: " + izoom
+        // $id("m2").innerHTML = " totalθ: " + totalθ
+        if ((ix === 0) && (iy === 0) && (izoom === 0)) {
+            timerOFF()
+        } else {
+            if (ix) {
+                ix--
+                totalθ += xIncr
+            }
+            if (iy) {
+                iy--
+                totalφ += yIncr
+            }
+            if (izoom) {
+                izoom--
+                zoom *= zoomIncr
+            }
+        }
+        t.clearRect(0, 0, canvas0.width, canvas0.height);
+        planes.forEach(rotate)
+        planes.forEach(draw)
+        var p = planes[1]
+        drawLollipop(p[0]._x, p[0]._y, "green", "A")
+        drawLollipop(p[p.rowlength - 1]._x, p[p.rowlength - 1]._y, "red", "B")
+            // document.getElementById("m3").innerText=ccc
+            if(!timer)
+        drawLegend(t)
+    }
+    ccc = 0
+
+    function drawLegend(ctx) {
+                  ctx.fillStyle = "white"
+
+        t.fillText("% grade", 20, 30)
+
+        for (var i = 0; i < colors.length; i++) {
+            ctx.fillStyle = colors[i]
+            ctx.fillRect(20, i*30+50, 20, 20);
+        };
+
+    }
+
+    function drawLollipop(x, y, color, letter) {
+        var radius = 10
+        drawCircle(x, y - 50, color, radius, letter)
+        drawLine(x, y, x, y - 50, color)
+    }
+    </script>
+    <script>
+    // GOOGLE MAPS------------------------------------------------------------
+    function cc(a) {
+            console.log(a)
+        } //debug
+    function hh(title, text) {
+        var dash = "----------"
+        cc(dash);
+        cc(title);
+        cc(dash);
+        cc(text)
+    }
+    var directionsDisplay;
+    var directionsService = new google.maps.DirectionsService();
+    var autocomplete;
+    var elevation_data = null;
+    var elevations = [];
+    var distance = null;
+    var duration = null;
+    var markersArray = [];
+    var mapPaths = [];
+    var polyline;
+    var routes = null;
+    var slopes = null;
+    var SAMPLESIZE = 500;
+
+    function initialize() {
+        var renderOptions = {
+            draggable: true, //routes draggable
+            hideRouteList: true,
+            polylineOptions: {
+                strokeOpacity: 0
+            }
+        };
+        var melbourne = new google.maps.LatLng(-37.813776, 144.963397);
+        directionsDisplay = new google.maps.DirectionsRenderer(renderOptions);
+        var mapCanvas = document.getElementById('map-canvas');
+        // var ctx1=mapCanvas.getContext("2d")
+        var slopeMap = document.getElementById('slopeMap');
+        // var ctx2=slopeMap.getContext("2d")
+        // var imgData = ctx1.getImageData(0, 0, 200, 200);
+        // ctx2.putImageData(imgData, 10, 70);
+        var mapOptions = {
+            center: melbourne,
+            zoom: 14,
+            // change map type to ROADMAP for faster loading
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        // provides the user with autocomplete functionality
+        autocomplete = new google.maps.places.Autocomplete(
+            (document.getElementById('start')), {
+                types: ['geocode']
+            });
+        autocomplete = new google.maps.places.Autocomplete(
+            (document.getElementById('end')), {
+                types: ['geocode']
+            });
+        map = new google.maps.Map(mapCanvas, mapOptions);
+        directionsDisplay.setMap(map);
+        elevation_data = new google.maps.ElevationService();
+        // update paths onClick.
+        google.maps.event.addListener(directionsDisplay, 'routeindex_changed', updateRoutes);
+        autocomplete.bindTo('bounds', map);
+        directionsDisplay.setMap(map);
+    }
+    latLongArray = []
+
+    function calcRoute(latLongArray) {
+        wayPointsArray = [];
+        if (latLongArray.length === 2) {
+            // return wayPointsArray = []; as previously defined
+        } else if (latLongArray.length > 2) {
+            for (i = 1; i < latLongArray.length - 1; i++) {
+                // cc(latLongArray[i]);
+                wayPointsArray.push({
+                    location: new google.maps.LatLng(latLongArray[i][0], latLongArray[i][1]),
+                    stopover: true
+                })
+            }
+            //console.log(wayPointsArray);
+        }
+        var start = document.getElementById("start")
+        var end = document.getElementById("end")
+        start = start.value || start.getAttribute("placeholder");
+        end = end.value || end.getAttribute("placeholder");
+        var request = {
+            origin: start,
+            destination: end,
+            travelMode: google.maps.TravelMode.BICYCLING,
+            waypoints: wayPointsArray,
+            optimizeWaypoints: true
+        };
+        directionsService.route(request, function(response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+            }
+        });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+    var updating = false;
+
+    function updateRoutes() {
+            if (updating) return;
+            updating = true;
+            setTimeout(function() {
+                updating = false;
+            }, 100);
+            var routes = this.directions.routes;
+            var path = routes[0].overview_path;
+            distance = routes[0].legs[0].distance;
+            duration = routes[0].legs[0].duration;
+            document.getElementById('distance').innerHTML = (distance.value / 1000) + "Km";
+            document.getElementById('travel-time').innerHTML = duration.text;
+            var pathRequest = {
+                'path': path,
+                'samples': SAMPLESIZE
+            };
+            // Send an elevation request to google
+            elevation_data.getElevationAlongPath(pathRequest, plotElevation);
+        }
+        // Google returns elevation data to the plotElevation
+    function plotElevation(elevations, status) {
+        //     var mapCanvas = document.getElementById('map-canvas');
+        // cc(mapCanvas)
+        // var ctx1=mapCanvas.getContext("2d")
+        // var slopeMap = document.getElementById('slopeMap');
+        // var ctx2=slopeMap.getContext("2d")
+        // var imgData = ctx1.getImageData(0, 0, 200, 200);
+        // ctx2.putImageData(imgData, 10, 70);
+        //     var imgData = ctx.getImageData(0, 0, 200, 200);
+        // ctx.putImageData(imgData, 10, 70);
+        plotSlope(elevations, SAMPLESIZE);
+    }
+
+    function plotSlope(elevations, SAMPLESIZE) {
+        slopes = [];
+        for (i = 0; i < elevations.length - 1; i++) {
+            slope = (calcSlope(elevations[i + 1].elevation, elevations[i].elevation, distance.value / SAMPLESIZE)) * 100;
+            slopes.push({
+                slope: slope,
+                location: midpoint(elevations[i], elevations[i + 1])
+            });
+        }
+        drawPolyline(elevations, slopes);
+        var data8 = gMaps3array(elevations, distance.value / SAMPLESIZE)
+        planes = [createGrid(fnPlane), createSlope(normalize(data8))]
+        timerON()
+    }
+
+    function removePolylines() {
+        for (var i = 0; i < mapPaths.length; i++) {
+            mapPaths[i].setMap(null);
+        }
+        mapPaths = [];
+    }
+
+    function drawPolyline(elevations, slopes) {
+        // Create a polyline between each elevation, color code by slope.
+        // Remove any existing polylines before drawing a new polyline.
+        removePolylines();
+        // Define /reset distanceClimbed, distanceDescended
+        var upHill = 0;
+        var downHill = 0;
+        for (var i = 0; i < slopes.length; i++) {
+            var routePath = [
+                elevations[i].location,
+                elevations[i + 1].location
+            ];
+            var slope = slopes[i].slope;
+            var current = elevations[i].elevation
+            var next = elevations[i + 1].elevation;
+            if (slope > 0) {
+                upHill += next - current;
+            } else {
+                downHill += current - next;
+            }
+            pathColor = slopeColor(slope)
+            mapPath = new google.maps.Polyline({
+                path: routePath,
+                strokeColor: pathColor,
+                strokeOpacity: 0.5,
+                strokeWeight: 8,
+                draggable: true
+            });
+            mapPath.setMap(map);
+            mapPaths.push(mapPath);
+        } //for
+        document.getElementById('climb').innerHTML = parseFloat(upHill).toFixed(2) + "m";
+        document.getElementById('descent').innerHTML = parseFloat(downHill).toFixed(2) + "m";
+    }
+
+    function elevationClear(x) {
+        map.locationMarker.setMap(null);
+    }
+
+    function midpoint(point1, point2) {
+        // To get the midpoint, find the average between each respective point
+        var lat = (point1.location.lat() + point2.location.lat()) / 2;
+        var lng = (point1.location.lng() + point2.location.lng()) / 2;
+        return new google.maps.LatLng(lat, lng);
+    }
+
+    function calcSlope(y1, y2, dx) {
+            return (y1 - y2) / dx;
+        }
+        //globals:
+    var colors = [
+        "black", //0
+        "red", //1
+        "#FF4719", //2
+        "orange", //3
+        "yellow", //4
+        "#EBFAFF", //6
+        "#C2F0FF", //7
+        "#5CD6FF", //8
+        "#483D8B"
+    ]
+
+    function slopeColor(slope) {
+
+        switch (true) { //currentSlope
+            case (slope > 12):
+                pathColor = colors[0];
+                break;
+            case (slope > 8):
+                pathColor = colors[1];
+                break;
+            case (slope > 6):
+                pathColor = colors[2];
+                break;
+            case (slope > 4):
+                pathColor = colors[3];
+                break;
+            case (slope > 2):
+                pathColor = colors[4];
+                break;
+            case (slope > 0):
+                pathColor = colors[5];
+                break;
+            case (slope > -4):
+                pathColor = colors[6];
+                break;
+            case (slope > -8):
+                pathColor = colors[7];
+                break;
+            default:
+                pathColor = colors[8];
+        }
+        return pathColor
+    }
+    var $ = function(id) {
+        return document.getElementById(id)
+    }
+    window.onresize = function() {
+        var sl = document.getElementById("slopeMap");
+        console.log("sl.clientWidth " + sl.clientWidth)
+
+        var c = document.getElementById("canvas3D");
+        // var gm = document.getElementById("googleMap");
+        // var wid = c.parentNode.clientWidth
+        c.width = sl.clientWidth;
+        c.height = 500;
+
+    }
+    window.onresize()
+    </script>
+</body>
+
+</html>
