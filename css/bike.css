@@ -118,7 +118,7 @@ h1 {
 
 @media (min-width: 500px) {
     #start {
-        border-left: 20px solid purple;
+        /*border-left: 20px solid purple;*/
     }
     .card .info button {
         width: 120px;
@@ -129,7 +129,7 @@ h1 {
 
 @media (min-width: 1000px) {
     #start {
-        border-left: 30px solid green;
+        /*border-left: 30px solid green;*/
     }
     .card .info button {
         width: 60px;
