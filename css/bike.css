@@ -37,7 +37,11 @@ h1 {
     margin: 0px;
     padding: 0px
 }
-#canvas3D{z-index: 1000}
+
+#canvas3D {
+    z-index: 1000
+}
+
 h1 {
     text-align: center;
     font-weight: 800;
@@ -109,30 +113,30 @@ h1 {
 }
 
 .addresses {
-    font-size: 3em;
+    font-size: 6em;
 }
 /*media -----------------------------------*/
 
 @media (min-width: 500px) {
     #start {
-    border-left: 20px solid purple;
-}
+        border-left: 20px solid purple;
+    }
     .card {
-        border-radius: 50% width: 30%;
         font-size: 3em;
     }
-    .card .info button {
-
-    }
+    .card .info button {}
     .growler {
         font-size: 2em;
+    }
+    .addresses {
+        font-size: 6em;
     }
 }
 
 @media (min-width: 1000px) {
     #start {
-    border-left: 30px solid green;
-}
+        border-left: 30px solid green;
+    }
     .card {
         font-size: 1em;
     }
