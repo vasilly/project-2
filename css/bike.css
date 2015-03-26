@@ -110,11 +110,19 @@ h1 {
 .growler {
     font-size: 3em;
 }
-.addresses{
+
+.addresses {
     font-size: 2em;
 }
-/*media -----------------------------------*/
 
+@media (min-width: 500px) {
+    .card .info button {
+        width: 120px;
+        height: 120px;
+        font-size: 1em;
+    }
+}
+/*media -----------------------------------*/
 /*@media (min-width: 500px) {
     #start {
         border-left: 20px solid purple;
@@ -146,14 +154,15 @@ h1 {
         float: right;
         /* left:20px; */
 
-        width: 47%;
-        margin-right: 20px;
-    }
-    .floatleft {
-        float: left;
-        /* left:20px; */
+width: 47%;
+margin-right: 20px;
+}
+.floatleft {
+    float: left;
+    /* left:20px; */
 
-        width: 47%;
-        margin-left: 20px;
-    }
-}*/
+    width: 47%;
+    margin-left: 20px;
+}
+}
+*/
