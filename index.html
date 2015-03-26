@@ -4,8 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>FriBikeMain</title>
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/demo.css" rel="stylesheet">
     <link href="css/rotate.css" rel="stylesheet">
     <link href="css/growler.css" rel="stylesheet">
     <link href="css/hide.css" rel="stylesheet">
@@ -25,7 +23,6 @@
             <i class="fa fa-arrow-left  fa-2x"></i>
         </div>
     </div>
-
     <h1>Bike Trip Planner</h1>
     <div class="card floatleft">
         <div id="map-canvas"></div>
@@ -47,8 +44,8 @@
             <button class="" id="right"><i class="fa fa-arrow-right  fa-2x"></i></button>
             <button class="" id="up"><i class="fa fa-arrow-up  fa-2x"></i></button>
             <button class="" id="down"><i class="fa fa-arrow-down  fa-2x"></i></button>
-            <button class="blue" id="zoomIN" ><i class="fa fa-search-plus  fa-2x"></i></button>
-            <button class="blue" id="zoomOUT" ><i class="fa fa-search-minus  fa-2x"></i></button>
+            <button class="blue" id="zoomIN"><i class="fa fa-search-plus  fa-2x"></i></button>
+            <button class="blue" id="zoomOUT"><i class="fa fa-search-minus  fa-2x"></i></button>
             <div id="travel-distance">
                 Distance:
                 <span id="distance"></span>
@@ -71,6 +68,13 @@
     </div>
     <script>
     // CANVAS------------------------------------------------------------
+    var i,myElements = document.querySelectorAll("button");
+    for (i = 0; i < myElements.length; i++)
+        (function(el) {
+            el.addEventListener('click', function() {el.classList.toggle("rotate360")}, false);
+        })(myElements[i])
+
+
     function cc(a) {
         console.log(a)
     }
@@ -513,11 +517,12 @@
     }
     latLongArray = []
 
-function goBtn(){
-    zoom=default_zoom
-    document.getElementById("go").classList.toggle("rotate360");
-    calcRoute(latLongArray);
-}
+    function goBtn() {
+        zoom = default_zoom
+        document.getElementById("go").classList.toggle("rotate360");
+        calcRoute(latLongArray);
+    }
+
     function calcRoute(latLongArray) {
         wayPointsArray = [];
         if (latLongArray.length === 2) {

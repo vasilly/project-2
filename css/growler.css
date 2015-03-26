@@ -1,15 +1,28 @@
+/*
+e.g.
+    <div class="growler">
+        <div>
+            <p>Enter Start & End address</p>
+            <p>Click Go!</p>
+            <i class="fa fa-arrow-left  fa-2x"></i>
+        </div>
+    </div>
+
+*/
+
 .growler {
     position: relative;
 }
 
 .growler div:first-child {
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 15px;
     padding: 1em;
     position: absolute;
     bottom: 0;
     margin: 5em 0em 0em 60%;
     /*opacity: 0;*/
+
     overflow: hidden;
     color: white;
     z-index: 1000;
