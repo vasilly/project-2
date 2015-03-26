@@ -69,8 +69,8 @@ h1 {
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     color: white;
-    width: 360px;
-    height: 360px;
+    width: 3px;
+    height: 3px;
     /* display: block; */
     /* margin: 0 auto; */
 }
