@@ -13,9 +13,9 @@
     overflow: hidden;
     color: white;
     z-index: 1000;
-    -webkit-animation: rotateGrowler 4s forwards;
-    -ms-animation: rotateGrowler 4s forwards;
-    animation: rotateGrowler 4s forwards;
+    -webkit-animation: rotateGrowler 6s forwards;
+    -ms-animation: rotateGrowler 6s forwards;
+    animation: rotateGrowler 6s forwards;
 }
 
 @-webkit-keyframes rotateGrowler {
