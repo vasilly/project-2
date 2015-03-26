@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>FriBikeMain</title>
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
     <link href="css/rotate.css" rel="stylesheet">
     <link href="css/growler.css" rel="stylesheet">
     <link href="css/hide.css" rel="stylesheet">
@@ -25,13 +27,13 @@
     <h1>Bike Trip Planner</h1>
     <div class="card floatleft">
         <div id="map-canvas"></div>
-            <div class="info">
-                <input id="start" class="addresses" type="text" placeholder="Flinders Street Station, VIC, Australia " value="Flinders Street Station, VIC, Australia">
-                <input id="end" class="addresses" type="text" placeholder="Chapel Street, VIC, Australia">
-                <button id="go" class=" green" onclick="goBtn();">Go!</button>
-                <button id="go2" class=" blue" onclick=""><i class="fa fa-refresh  fa-2x"></i></button>
-                <button id="help" class=" blue" onclick=""><i class="fa fa-question  fa-2x"></i></button>
-            </div>
+        <div class="info">
+            <input id="start" class="addresses" type="text" placeholder="Flinders Street Station, VIC, Australia " value="Flinders Street Station, VIC, Australia">
+            <input id="end" class="addresses" type="text" placeholder="Chapel Street, VIC, Australia">
+            <button id="go" class=" green" onclick="goBtn();">Go!</button>
+            <button id="go2" class=" blue" onclick=""><i class="fa fa-refresh  fa-2x"></i></button>
+            <button id="help" class=" blue" onclick=""><i class="fa fa-question  fa-2x"></i></button>
+        </div>
     </div>
     <div id="slopeMap" class="card floatright">
         <canvas id="canvas3D"></canvas>
@@ -65,10 +67,12 @@
     </div>
     <script>
     // CANVAS------------------------------------------------------------
-    var i,myElements = document.querySelectorAll("button");
+    var i, myElements = document.querySelectorAll("button");
     for (i = 0; i < myElements.length; i++)
         (function(el) {
-            el.addEventListener('click', function() {el.classList.toggle("rotate360")}, false);
+            el.addEventListener('click', function() {
+                el.classList.toggle("rotate360")
+            }, false);
         })(myElements[i])
 
 
