@@ -114,6 +114,9 @@ h1 {
 /*media -----------------------------------*/
 
 @media (min-width: 500px) {
+    #start {
+    border-left: 20px solid purple;
+}
     .card {
         border-radius: 50% width: 30%;
         font-size: 2em;
@@ -128,6 +131,9 @@ h1 {
 }
 
 @media (min-width: 1000px) {
+    #start {
+    border-left: 30px solid green;
+}
     .card {
         font-size: 1em;
     }

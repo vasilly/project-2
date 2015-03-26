@@ -26,7 +26,6 @@
     <h1>Bike Trip Planner</h1>
     <div class="card floatleft">
         <div id="map-canvas"></div>
-        <div id="input-panel">
             <div class="info">
                 <input id="start" class="adresses" type="text" placeholder="Flinders Street Station, VIC, Australia " value="Flinders Street Station, VIC, Australia">
                 <input id="end" class="adresses" type="text" placeholder="Chapel Street, VIC, Australia">
@@ -34,7 +33,6 @@
                 <button id="go2" class=" blue" onclick=""><i class="fa fa-refresh  fa-2x"></i></button>
                 <button id="help" class=" blue" onclick=""><i class="fa fa-question  fa-2x"></i></button>
             </div>
-        </div>
     </div>
     <div id="slopeMap" class="card floatright">
         <canvas id="canvas3D"></canvas>
@@ -519,7 +517,6 @@
 
     function goBtn() {
         zoom = default_zoom
-        document.getElementById("go").classList.toggle("rotate360");
         calcRoute(latLongArray);
     }
 
