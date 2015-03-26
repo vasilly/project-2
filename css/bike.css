@@ -35,7 +35,7 @@
     #c {
         width: 100% border: 1px solid red;
     }
-
+canvas{background-color: white}
     #map-canvas {
         height: 100%;
         width: 45%;

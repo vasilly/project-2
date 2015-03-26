@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name=“viewport” content=“width=device-width, initial-scale=1”>
     <title>FriBikeMain</title>
     <link href="css/main.css" rel="stylesheet">
     <link href="css/demo.css" rel="stylesheet">
@@ -177,7 +176,8 @@
         centerY = canvas0.height / 2,
         totalθ = 0,
         totalφ = 0,
-        zoom = 2,
+        default_zoom = 2,
+        zoom = default_zoom,
         zoomTarget = 1.6,
         previous,
         /* counters for animation in x,y plane+zoom */
@@ -514,6 +514,7 @@
     latLongArray = []
 
 function goBtn(){
+    zoom=default_zoom
     document.getElementById("go").classList.toggle("rotate360");
     calcRoute(latLongArray);
 }
