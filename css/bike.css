@@ -1,32 +1,16 @@
     /*gmaps*/
 
-    button {
-        /*-webkit-appearance: none;*/
-    }
-
     button:focus {
         outline: 0 !important;
-    }
-
-    html {
-        height: 100%;
-        width: 100%;
-        margin: 0 auto 0;
-    }
-
-    body {
-        height: 100%;
-        margin: 0;
-        padding: 0
     }
 
     html,
     body {
         height: 100%;
-        /*width: 100%;*/
-
+        width: 100%;
         margin: 0px;
-        padding: 0px
+        padding: 0px;
+        margin: 0 auto 0;
     }
 
     body {
@@ -120,6 +104,7 @@
         transition: all 100ms;
         -webkit-appearance: none;
         border: none;
+        margin: 1em 1em;
         border-bottom: 1px solid grey;
         border-radius: 50%;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
@@ -153,9 +138,9 @@
     }
 
     #start {
-        border-left: 1px solid red;
+        border-left: 2px solid green;
     }
 
     #end {
-        border-left: 1px solid green;
+        border-left: 2px solid red;
     }

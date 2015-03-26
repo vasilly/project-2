@@ -5,15 +5,28 @@
     <meta charset="UTF-8">
     <meta name=“viewport” content=“width=device-width, initial-scale=1”>
     <title>FriBikeMain</title>
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/demo.css" rel="stylesheet">
+    <link href="css/rotate.css" rel="stylesheet">
+    <link href="css/growler.css" rel="stylesheet">
+    <link href="css/hide.css" rel="stylesheet">
+    <link href="css/off-canvas-Menu.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
     <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
     <link rel='stylesheet prefetch' href='css/bike.css'>
-
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 
 <body>
+    <div class="growler">
+        <div>
+            <p>Enter Start & End address</p>
+            <p>Click Go!</p>
+            <i class="fa fa-arrow-left  fa-2x"></i>
+        </div>
+    </div>
+
     <h1>Bike Trip Planner</h1>
     <div class="card floatleft">
         <div id="map-canvas"></div>
@@ -21,8 +34,8 @@
             <div class="info">
                 <input id="start" class="" type="text" placeholder="Flinders Street Station, VIC, Australia " value="Flinders Street Station, VIC, Australia">
                 <input id="end" class="" type="text" placeholder="Chapel Street, VIC, Australia">
-                <button id="go" class=" green" onclick="calcRoute(latLongArray);">Go!</button>
-                <button id="go2" class=" blue" onclick="calcRoute(latLongArray);"><i class="fa fa-refresh  fa-2x"></i></button>
+                <button id="go" class=" green" onclick="goBtn();">Go!</button>
+                <button id="go2" class=" blue" onclick=""><i class="fa fa-refresh  fa-2x"></i></button>
                 <button id="help" class=" blue" onclick=""><i class="fa fa-question  fa-2x"></i></button>
             </div>
         </div>
@@ -35,8 +48,8 @@
             <button class="" id="right"><i class="fa fa-arrow-right  fa-2x"></i></button>
             <button class="" id="up"><i class="fa fa-arrow-up  fa-2x"></i></button>
             <button class="" id="down"><i class="fa fa-arrow-down  fa-2x"></i></button>
-            <button class="" id="zoomIN"><i class="fa fa-search-plus  fa-2x"></i></button>
-            <button class="" id="zoomOUT"><i class="fa fa-search-minus  fa-2x"></i></button>
+            <button class="blue" id="zoomIN" ><i class="fa fa-search-plus  fa-2x"></i></button>
+            <button class="blue" id="zoomOUT" ><i class="fa fa-search-minus  fa-2x"></i></button>
             <div id="travel-distance">
                 Distance:
                 <span id="distance"></span>
@@ -382,7 +395,7 @@
     function main() {
         fps = 1000 / (+new Date() - start_time);
         start_time = +new Date()
-        // $id("m1").innerHTML = Math.round(fps)
+            // $id("m1").innerHTML = Math.round(fps)
 
 
         // $id("m1").innerHTML = " " + c1++ + " ix: " + ix + " iy: " + iy + " izoom: " + izoom
@@ -410,19 +423,19 @@
         drawLollipop(p[0]._x, p[0]._y, "green", "A")
         drawLollipop(p[p.rowlength - 1]._x, p[p.rowlength - 1]._y, "red", "B")
             // document.getElementById("m3").innerText=ccc
-            if(!timer)
-        drawLegend(t)
+        if (!timer)
+            drawLegend(t)
     }
     ccc = 0
 
     function drawLegend(ctx) {
-                  ctx.fillStyle = "white"
+        ctx.fillStyle = "white"
 
         t.fillText("% grade", 20, 30)
 
         for (var i = 0; i < colors.length; i++) {
             ctx.fillStyle = colors[i]
-            ctx.fillRect(20, i*30+50, 20, 20);
+            ctx.fillRect(20, i * 30 + 50, 20, 20);
         };
 
     }
@@ -500,6 +513,10 @@
     }
     latLongArray = []
 
+function goBtn(){
+    document.getElementById("go").classList.toggle("rotate360");
+    calcRoute(latLongArray);
+}
     function calcRoute(latLongArray) {
         wayPointsArray = [];
         if (latLongArray.length === 2) {

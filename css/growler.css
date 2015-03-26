@@ -1,34 +1,40 @@
-.growler {}
-.box {
-  position: relative;
+.growler {
+    position: relative;
 }
-.bet_time {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+
+.growler div:first-child {
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 15px;
+    padding: 1em;
+    position: absolute;
+    bottom: 0;
+    margin: 5em 0em 0em 60%;
+    /*opacity: 0;*/
+    overflow: hidden;
+    color: white;
+    z-index: 1000;
+    -webkit-animation: rotateGrowler 4s forwards;
+    -ms-animation: rotateGrowler 4s forwards;
+    animation: rotateGrowler 4s forwards;
 }
-.growler span {
-  opacity: 0;
-  overflow: hidden;
-  color: #6b969d;
-  -webkit-animation: rotateThis 10s forwards;
-  -ms-animation: rotateThis 10s forwards;
-  animation: rotateThis 10s forwards;
-}
-@-webkit-keyframes rotateThis {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 0;
-    -webkit-transform: translateY(-3em);
-  }
-  20% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: translateY(0);
-  }
+
+@-webkit-keyframes rotateGrowler {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-3em);
+    }
+    20% {
+        opacity: 1;
+        -webkit-transform: translateY(10em);
+        /**/
+    }
+    90% {
+        opacity: 1;
+        -webkit-transform: translateY(10em);
+        /**/
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translateY(0);
+    }
 }
