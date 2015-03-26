@@ -44,6 +44,12 @@ h1 {
     font-size: 4em;
 }
 
+.floatright,
+.floatleft {
+    /*width: 100%;*/
+    /* height: 300px; */
+}
+
 .card {
     border-bottom: 1px solid white;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
@@ -52,12 +58,6 @@ h1 {
     margin: 40px auto 40px;
     font-size: 3em;
     /* overflow:hidden; */
-}
-
-.floatright,
-.floatleft {
-    /*width: 100%;*/
-    /* height: 300px; */
 }
 
 .card .info button {
@@ -103,6 +103,15 @@ h1 {
 #end {
     border-left: 2px solid red;
 }
+
+.growler {
+    font-size: 3em;
+}
+
+.addresses {
+    font-size: 3em;
+}
+/*media -----------------------------------*/
 
 @media (min-width: 500px) {
     .card {
