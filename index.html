@@ -50,36 +50,36 @@
                     </tr>
                     <tr>
                         <td  bgcolor="black"></td>
-                        <td>>12</td>
+                        <td>> 12</td>
                     </tr>
                     <tr>
                         <td  bgcolor="red"></td>
-                        <td>>8</td>
+                        <td>> 8</td>
                     </tr>
                     <tr>
                         <td  bgcolor="#FF4719"></td>
-                        <td>>6</td>
+                        <td>> 6</td>
                     </tr>
                     <tr>
                         <td  bgcolor="orange"></td>
-                        <td>>4</td>
+                        <td>> 4</td>
                     </tr>
                     <tr>
                         <td  bgcolor="yellow"></td>
-                        <td>>2</td>
+                        <td>> 2</td>
                     </tr>
                     <tr>
                         <td  bgcolor="#EBFAFF"></td>
                         <td>0</td>
                     </tr>                    <tr>
                         <td  bgcolor="#C2F0FF"></td>
-                        <td>- 2</td>
+                        <td>> -2</td>
                     </tr>                    <tr>
                         <td  bgcolor="#5CD6FF"></td>
-                        <td>>-4</td>
+                        <td>> -4</td>
                     </tr>                    <tr>
                         <td  bgcolor="#483D8B"></td>
-                        <td>>-8</td>
+                        <td>> -8</td>
                     </tr>
 
                 </table>
@@ -94,7 +94,8 @@
             <button class="lime" id="down"><i class="fa fa-arrow-down  "></i></button>
             <button class="blue" id="zoomIN"><i class="fa fa-search-plus  "></i></button>
             <button class="blue" id="zoomOUT"><i class="fa fa-search-minus  "></i></button>
-            <div id="travel-distance">
+            <div class="info-box">
+            <div id="travel-distance" >
                 Distance:
                 <span id="distance"></span>
             </div>
@@ -111,6 +112,7 @@
                 <span id="descent"></span>
             </div>
             <div>fps:<span id="m1"></span>
+            </div>
             </div>
         </div>
     </div>
@@ -479,21 +481,21 @@
         drawLollipop(p[p.rowlength - 1]._x, p[p.rowlength - 1]._y, "red", "B")
             // document.getElementById("m3").innerText=ccc
         if (!timer)
-            drawLegend(t)
+            {/* AFTER FINISH drawing*/}
     }
     ccc = 0
 
-    function drawLegend(ctx) {
-        ctx.fillStyle = "white"
+    // function drawLegend(ctx) {
+    //     ctx.fillStyle = "white"
 
-        t.fillText("% grade", 20, 30)
+    //     t.fillText("% grade", 20, 30)
 
-        for (var i = 0; i < colors.length; i++) {
-            ctx.fillStyle = colors[i]
-            ctx.fillRect(20, i * 30 + 50, 20, 20);
-        };
+    //     for (var i = 0; i < colors.length; i++) {
+    //         ctx.fillStyle = colors[i]
+    //         ctx.fillRect(20, i * 30 + 50, 20, 20);
+    //     };
 
-    }
+    // }
 
     function drawLollipop(x, y, color, letter) {
         var radius = 25

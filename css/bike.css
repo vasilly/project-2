@@ -208,3 +208,7 @@ td:last-child {
 td:first-child {
     width: 1em;
 }
+
+.info-box{
+margin:0px 0px 1em 1em;
+}
