@@ -9,10 +9,12 @@
     <link href="css/rotate.css" rel="stylesheet">
     <link href="css/growler.css" rel="stylesheet">
     <link href="css/hide.css" rel="stylesheet">
+    <link href="css/table.css" rel="stylesheet">
     <link href="css/off-canvas-Menu.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
     <link rel='stylesheet prefetch' href='css/bike.css'>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+    <script type="text/javascript" src="http://js/tableCreator.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 
@@ -36,15 +38,62 @@
         </div>
     </div>
     <div id="slopeMap" class="card floatright">
-        <canvas id="canvas3D"></canvas>
+        <div class="canvas3Dwrap">
+            <canvas id="canvas3D"></canvas>
+            <div class="legend">
+                <table>
+                <caption>gradient</caption>
+
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td  bgcolor="black"></td>
+                        <td>>12</td>
+                    </tr>
+                    <tr>
+                        <td  bgcolor="red"></td>
+                        <td>>8</td>
+                    </tr>
+                    <tr>
+                        <td  bgcolor="#FF4719"></td>
+                        <td>>6</td>
+                    </tr>
+                    <tr>
+                        <td  bgcolor="orange"></td>
+                        <td>>4</td>
+                    </tr>
+                    <tr>
+                        <td  bgcolor="yellow"></td>
+                        <td>>2</td>
+                    </tr>
+                    <tr>
+                        <td  bgcolor="#EBFAFF"></td>
+                        <td>0</td>
+                    </tr>                    <tr>
+                        <td  bgcolor="#C2F0FF"></td>
+                        <td>- 2</td>
+                    </tr>                    <tr>
+                        <td  bgcolor="#5CD6FF"></td>
+                        <td>>-4</td>
+                    </tr>                    <tr>
+                        <td  bgcolor="#483D8B"></td>
+                        <td>>-8</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
         <!-- ➜ -->
         <div class="info">
-            <button class="" id="left"><i class="fa fa-arrow-left  fa-2x"></i></button>
-            <button class="" id="right"><i class="fa fa-arrow-right  fa-2x"></i></button>
-            <button class="" id="up"><i class="fa fa-arrow-up  fa-2x"></i></button>
-            <button class="" id="down"><i class="fa fa-arrow-down  fa-2x"></i></button>
-            <button class="blue" id="zoomIN"><i class="fa fa-search-plus  fa-2x"></i></button>
-            <button class="blue" id="zoomOUT"><i class="fa fa-search-minus  fa-2x"></i></button>
+            <button class="lime" id="left"><i class="fa fa-arrow-left  "></i></button>
+            <button class="lime" id="right"><i class="fa fa-arrow-right  "></i></button>
+            <button class="lime" id="up"><i class="fa fa-arrow-up  "></i></button>
+            <button class="lime" id="down"><i class="fa fa-arrow-down  "></i></button>
+            <button class="blue" id="zoomIN"><i class="fa fa-search-plus  "></i></button>
+            <button class="blue" id="zoomOUT"><i class="fa fa-search-minus  "></i></button>
             <div id="travel-distance">
                 Distance:
                 <span id="distance"></span>
@@ -341,7 +390,7 @@
     }
 
     function draw(p) {
-        t.strokeStyle = "white";
+        t.strokeStyle = "grey";
         t.beginPath();
         var rowlength = p.rowlength
         t.moveTo(p[0]._x, p[0]._y);
@@ -379,8 +428,9 @@
         t.arc(x, y, radius, 0, 2 * Math.PI, false);
         t.fillStyle = color;
         t.fill();
+        t.font = '25pt Arial';
         t.fillStyle = "white";
-        t.fillText(txt, x - radius / 3, y + radius / 3)
+        t.fillText(txt, x - radius / 2.4, y + radius / 2)
         t.fillStyle = oldColor;
     }
 
@@ -446,9 +496,10 @@
     }
 
     function drawLollipop(x, y, color, letter) {
-        var radius = 10
-        drawCircle(x, y - 50, color, radius, letter)
+        var radius = 25
         drawLine(x, y, x, y - 50, color)
+        drawCircle(x, y - 50, color, radius, letter)
+
     }
     </script>
     <script>
@@ -477,45 +528,47 @@
     var slopes = null;
     var SAMPLESIZE = 500;
 
-    function initialize() {
-        var renderOptions = {
-            draggable: true, //routes draggable
-            hideRouteList: true,
-            polylineOptions: {
-                strokeOpacity: 0
-            }
-        };
-        var melbourne = new google.maps.LatLng(-37.813776, 144.963397);
-        directionsDisplay = new google.maps.DirectionsRenderer(renderOptions);
-        var mapCanvas = document.getElementById('map-canvas');
-        // var ctx1=mapCanvas.getContext("2d")
-        var slopeMap = document.getElementById('slopeMap');
-        // var ctx2=slopeMap.getContext("2d")
-        // var imgData = ctx1.getImageData(0, 0, 200, 200);
-        // ctx2.putImageData(imgData, 10, 70);
-        var mapOptions = {
-            center: melbourne,
-            zoom: 14,
-            // change map type to ROADMAP for faster loading
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        // provides the user with autocomplete functionality
-        autocomplete = new google.maps.places.Autocomplete(
-            (document.getElementById('start')), {
-                types: ['geocode']
-            });
-        autocomplete = new google.maps.places.Autocomplete(
-            (document.getElementById('end')), {
-                types: ['geocode']
-            });
-        map = new google.maps.Map(mapCanvas, mapOptions);
-        directionsDisplay.setMap(map);
-        elevation_data = new google.maps.ElevationService();
-        // update paths onClick.
-        google.maps.event.addListener(directionsDisplay, 'routeindex_changed', updateRoutes);
-        autocomplete.bindTo('bounds', map);
-        directionsDisplay.setMap(map);
-    }
+    function initialize
+        () {
+            var renderOptions = {
+                draggable: true, //routes draggable
+                hideRouteList: true,
+                polylineOptions: {
+                    strokeOpacity: 0
+                }
+            };
+            var melbourne = new google.maps.LatLng(-37.813776, 144.963397);
+            directionsDisplay = new google.maps.DirectionsRenderer(renderOptions);
+            var mapCanvas = document.getElementById('map-canvas');
+            // var ctx1=mapCanvas.getContext("2d")
+            var slopeMap = document.getElementById('slopeMap');
+            // var ctx2=slopeMap.getContext("2d")
+            // var imgData = ctx1.getImageData(0, 0, 200, 200);
+            // ctx2.putImageData(imgData, 10, 70);
+            var mapOptions = {
+                center: melbourne,
+                zoom: 14,
+                // change map type to ROADMAP for faster loading
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            // provides the user with autocomplete functionality
+            autocomplete = new google.maps.places.Autocomplete(
+                (document.getElementById('start')), {
+                    types: ['geocode']
+                });
+            autocomplete = new google.maps.places.Autocomplete(
+                (document.getElementById('end')), {
+                    types: ['geocode']
+                });
+            map = new google.maps.Map(mapCanvas, mapOptions);
+            directionsDisplay.setMap(map);
+            elevation_data = new google.maps.ElevationService();
+            // update paths onClick.
+            google.maps.event.addListener(directionsDisplay, 'routeindex_changed', updateRoutes);
+            autocomplete.bindTo('bounds', map);
+            directionsDisplay.setMap(map);
+            goBtn();
+        }
     latLongArray = []
 
     function goBtn() {
@@ -713,11 +766,11 @@
         var sl = document.getElementById("slopeMap");
         console.log("sl.clientWidth " + sl.clientWidth)
 
-        var c = document.getElementById("canvas3D");
-        // var gm = document.getElementById("googleMap");
-        // var wid = c.parentNode.clientWidth
-        c.width = sl.clientWidth;
-        c.height = 500;
+        // var c = document.getElementById("canvas3D");
+        // // var gm = document.getElementById("googleMap");
+        // // var wid = c.parentNode.clientWidth
+        // c.width = sl.clientWidth;
+        // c.height = 500;
 
     }
     window.onresize()

@@ -7,8 +7,8 @@ body {
     height: 100%;
     width: 100%;
     margin: 0px;
-    padding: 0px;
-    margin: 0 auto 0;
+    /*    padding: 0px;
+    margin: 0 auto 0;*/
 }
 
 body {
@@ -20,7 +20,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    font-family: 'Poiret One', cursive;
+    font-family: 'Poiret One', cursive 'Arial';
     color: white;
 }
 
@@ -38,8 +38,21 @@ h1 {
     padding: 0px
 }
 
+.canvas3Dwrap {
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    /*position:relative;*/
+    /*border: 3px solid red;*/
+}
+
 #canvas3D {
-    z-index: 1000
+    /*        width: 500px;
+    height: 500px;*/
+
+    z-index: 1000 display: block;
+    background-color: white;
+    position: absolute;
 }
 
 h1 {
@@ -60,7 +73,7 @@ h1 {
     width: 90%;
     position: relative;
     margin: 40px auto 40px;
-     overflow:hidden;
+    overflow: hidden;
 }
 
 .card .info button {
@@ -91,12 +104,16 @@ h1 {
     background-color: green;
 }
 
+.lime {
+    background-color: grey;
+}
+
 .info input {
     border: 1px solid #CCC;
     color: #999;
     width: 100%;
-    margin: 5px 0 15px;
-    padding: 5px 10px;
+    margin: 15px 0 15px;
+    /*padding: 5px 10px;*/
 }
 
 #start {
@@ -112,14 +129,19 @@ h1 {
 }
 
 .addresses {
-    width:100%;
+    width: 100%;
     /*height:2em;*/
+
     font-size: 4em;
+}
+
+.card .info {
+    /*font-size: 2em;*/
 }
 
 @media (min-width: 500px) {
     #start {
-        /*border-left: 20px solid purple;*/
+        border-left: 3px solid purple;
     }
     .card .info button {
         width: 120px;
@@ -130,14 +152,26 @@ h1 {
 
 @media (min-width: 1000px) {
     #start {
-        /*border-left: 30px solid green;*/
+        border-left: 3px solid green;
     }
     .card .info button {
         width: 60px;
         height: 60px;
         font-size: 1em;
-     overflow:hidden;
-
+        /*overflow: hidden;*/
+    }
+    .addresses {
+        font-size: 2em;
+    }
+    .floatright {
+        float: right;
+        width: 47%;
+        margin-right: 20px;
+    }
+    .floatleft {
+        float: left;
+        width: 47%;
+        margin-left: 20px;
     }
 }
 /*media -----------------------------------*/
@@ -157,30 +191,20 @@ h1 {
     }
 }
 
-@media (min-width: 1000px) {
-    #start {
-        border-left: 30px solid green;
-    }
-    .card {
-        font-size: 1em;
-    }
-    .card .info button {
-        width: 60px;
-        height: 60px;
-    }
-    .floatright {
-        float: right;
-        /* left:20px; */
-
-width: 47%;
-margin-right: 20px;
-}
-.floatleft {
-    float: left;
-    /* left:20px; */
-
-    width: 47%;
-    margin-left: 20px;
-}
-}
 */
+
+table {
+    position: absolute;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    margin: 10px 0px 10px 10px;
+}
+
+td:last-child {
+    float: right;
+}
+
+td:first-child {
+    width: 1em;
+}

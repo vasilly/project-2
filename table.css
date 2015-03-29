@@ -1,0 +1,54 @@
+
+
+table {
+}
+
+table.reference {
+    width: 300px;
+    background-color: #ffffff;
+    border: 1px solid #c3c3c3;
+    border-collapse: collapse;
+}
+
+table.reference caption {
+    background-color: DarkSlateGray;
+    color: white;
+    padding: 6px;
+    position: relative;
+}
+
+table.reference span {
+    float: right;
+    position: relative;
+
+}
+
+table.reference span:first-child {
+    float: left;
+}
+
+table.reference th {
+    background-color: slategrey;
+    color: white;
+    border: 1px solid #c3c3c3;
+    padding: 3px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.reference td {
+    border: 1px solid #c3c3c3;
+    padding: 3px;
+    vertical-align: top;
+    table-layout: fixed;
+    width: 100px;
+    float:right;
+}
+
+
+table{
+    position:absolute;
+    color:black;
+    background-color: white;
+    border: 1px solid black
+}

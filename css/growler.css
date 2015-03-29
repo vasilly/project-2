@@ -51,3 +51,10 @@ e.g.
         -webkit-transform: translateY(0);
     }
 }
+
+
+
+/*shortest transition*/
+button:hover {
+    transition: background-color .5s ease-out;
+}
