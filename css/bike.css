@@ -39,8 +39,8 @@ h1 {
 }
 
 .canvas3Dwrap {
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
     margin: 0 auto;
     /*position:relative;*/
     /*border: 3px solid red;*/
@@ -146,8 +146,31 @@ h1 {
     padding: 1em 0 0 1em;
     margin: 1em;
 }
-.info-box span{
+
+.info-box span {
     font-size: 2em;
+}
+
+.legend {
+    position: absolute;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    margin: 10px 0px 10px 10px;
+}
+
+.legend td:last-child {
+    float: right;
+    font-size: 2em;
+}
+
+.legend td:first-child {
+    width: 2em;
+    height: 2em;
+}
+
+.info-box {
+    margin: 0px 0px 1em 1em;
 }
 
 @media (min-width: 500px) {
@@ -184,6 +207,9 @@ h1 {
         width: 47%;
         margin-left: 20px;
     }
+    .legend td:last-child {
+        font-size: 1em;
+    }
 }
 /*media -----------------------------------*/
 /*@media (min-width: 500px) {
@@ -204,23 +230,4 @@ h1 {
 
 */
 
-.legend {
-    position: absolute;
-    color: black;
-    background-color: white;
-    border: 1px solid black;
-    margin: 10px 0px 10px 10px;
-}
 
-.legend td:last-child {
-    float: right;
-}
-
-.legend td:first-child {
-    width: 2em;
-    height: 2em;
-}
-
-.info-box {
-    margin: 0px 0px 1em 1em;
-}
