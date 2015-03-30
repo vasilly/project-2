@@ -157,11 +157,12 @@ h1 {
     background-color: white;
     border: 1px solid black;
     margin: 10px 0px 10px 10px;
+    font-size: 2em;
+
 }
 
 .legend td:last-child {
     float: right;
-    font-size: 2em;
 }
 
 .legend td:first-child {
@@ -179,6 +180,9 @@ h1 {
         width: 120px;
         height: 120px;
         font-size: 2em;
+    }
+        .legend {
+        font-size: 1.4em;
     }
 }
 
@@ -205,8 +209,8 @@ h1 {
         width: 47%;
         margin-left: 20px;
     }
-    .legend td:last-child {
-        font-size: 1em;
+    .legend {
+        font-size: 1.4em;
     }
 
 
