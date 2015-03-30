@@ -158,6 +158,8 @@ h1 {
     background-color: white;
     margin: 10px 0px 10px 10px;
     font-size: 2em;
+        border: 2px solid black;
+
 }
 
 .legend td:last-child {
@@ -168,6 +170,10 @@ h1 {
     width: 2em;
     height: 2em;
 }
+/*---------------*/
+/*responsive css */
+/*---------------*/
+/*------------------------------------------------------------------------------------------*/
 
 @media (min-width: 500px) {
     .card .info button {
@@ -180,6 +186,7 @@ h1 {
         border: 1px solid black;
     }
 }
+/*---------------*/
 
 @media (min-width: 1000px) {
     body {
