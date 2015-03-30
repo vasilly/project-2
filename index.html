@@ -111,13 +111,24 @@
                     Meters of Descent:
                     <span id="descent"></span>
                 </div>
-                <div>fps:<span id="m1"></span>
+                <div>
+                    fps:
+                    <span id="m1"></span>
                 </div>
             </div>
         </div>
     </div>
     <script>
     // CANVAS------------------------------------------------------------
+
+    function fitToContainer(canvas) {
+        //http://stackoverflow.com/questions/10214873/make-canvas-as-wide-and-as-high-as-parent
+        // set parent css {position:relative};
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+    }
     var i, myElements = document.querySelectorAll("button");
     for (i = 0; i < myElements.length; i++)
         (function(el) {
@@ -216,8 +227,9 @@
         // data9.each( function(){ } )
         //-------------
     var canvas0 = document.getElementById("canvas3D");
-    canvas0.width = innerWidth * .4;
-    canvas0.height = 500;
+        fitToContainer(canvas0)
+
+
     var t = canvas0.getContext("2d"),
         f = 200,
         mX = 0,
