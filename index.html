@@ -42,50 +42,50 @@
             <canvas id="canvas3D"></canvas>
             <div class="legend">
                 <table>
-                <caption>gradient</caption>
-
+                    <caption>gradient&nbsp;%</caption>
                     <tr>
                         <th></th>
                         <th></th>
                     </tr>
                     <tr>
-                        <td  bgcolor="black"></td>
+                        <td bgcolor="black"></td>
                         <td>> 12</td>
                     </tr>
                     <tr>
-                        <td  bgcolor="red"></td>
+                        <td bgcolor="red"></td>
                         <td>> 8</td>
                     </tr>
                     <tr>
-                        <td  bgcolor="#FF4719"></td>
+                        <td bgcolor="#FF4719"></td>
                         <td>> 6</td>
                     </tr>
                     <tr>
-                        <td  bgcolor="orange"></td>
+                        <td bgcolor="orange"></td>
                         <td>> 4</td>
                     </tr>
                     <tr>
-                        <td  bgcolor="yellow"></td>
+                        <td bgcolor="yellow"></td>
                         <td>> 2</td>
                     </tr>
                     <tr>
-                        <td  bgcolor="#EBFAFF"></td>
+                        <td bgcolor="#EBFAFF"></td>
                         <td>0</td>
-                    </tr>                    <tr>
-                        <td  bgcolor="#C2F0FF"></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#C2F0FF"></td>
                         <td>> -2</td>
-                    </tr>                    <tr>
-                        <td  bgcolor="#5CD6FF"></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#5CD6FF"></td>
                         <td>> -4</td>
-                    </tr>                    <tr>
-                        <td  bgcolor="#483D8B"></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="#483D8B"></td>
                         <td>> -8</td>
                     </tr>
-
                 </table>
             </div>
         </div>
-
         <!-- ➜ -->
         <div class="info">
             <button class="lime" id="left"><i class="fa fa-arrow-left  "></i></button>
@@ -95,24 +95,24 @@
             <button class="blue" id="zoomIN"><i class="fa fa-search-plus  "></i></button>
             <button class="blue" id="zoomOUT"><i class="fa fa-search-minus  "></i></button>
             <div class="info-box">
-            <div id="travel-distance" >
-                Distance:
-                <span id="distance"></span>
-            </div>
-            <div>
-                Travel Time:
-                <span id="travel-time"></span>
-            </div>
-            <div>
-                Meters to Climb:
-                <span id="climb"></span>
-            </div>
-            <div>
-                Meters of Descent:
-                <span id="descent"></span>
-            </div>
-            <div>fps:<span id="m1"></span>
-            </div>
+                <div>
+                    Distance:
+                    <span id="distance"></span>
+                </div>
+                <div>
+                    Travel Time:
+                    <span id="travel-time"></span>
+                </div>
+                <div>
+                    Meters of Climb:
+                    <span id="climb"></span>
+                </div>
+                <div>
+                    Meters of Descent:
+                    <span id="descent"></span>
+                </div>
+                <div>fps:<span id="m1"></span>
+                </div>
             </div>
         </div>
     </div>
@@ -480,8 +480,7 @@
         drawLollipop(p[0]._x, p[0]._y, "green", "A")
         drawLollipop(p[p.rowlength - 1]._x, p[p.rowlength - 1]._y, "red", "B")
             // document.getElementById("m3").innerText=ccc
-        if (!timer)
-            {/* AFTER FINISH drawing*/}
+        if (!timer) { /* AFTER FINISH drawing*/ }
     }
     ccc = 0
 

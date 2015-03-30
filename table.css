@@ -3,31 +3,31 @@
 table {
 }
 
-table.reference {
+.legend {
     width: 300px;
     background-color: #ffffff;
     border: 1px solid #c3c3c3;
     border-collapse: collapse;
 }
 
-table.reference caption {
+.legend caption {
     background-color: DarkSlateGray;
     color: white;
     padding: 6px;
     position: relative;
 }
 
-table.reference span {
+.legend span {
     float: right;
     position: relative;
 
 }
 
-table.reference span:first-child {
+.legend span:first-child {
     float: left;
 }
 
-table.reference th {
+.legend th {
     background-color: slategrey;
     color: white;
     border: 1px solid #c3c3c3;
@@ -36,7 +36,7 @@ table.reference th {
     text-align: left;
 }
 
-table.reference td {
+.legend td {
     border: 1px solid #c3c3c3;
     padding: 3px;
     vertical-align: top;

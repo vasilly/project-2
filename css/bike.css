@@ -139,6 +139,17 @@ h1 {
     /*font-size: 2em;*/
 }
 
+.info-box {
+    font-size: 2em;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+    padding: 1em 0 0 1em;
+    margin: 1em;
+}
+.info-box span{
+    font-size: 2em;
+}
+
 @media (min-width: 500px) {
     #start {
         border-left: 3px solid purple;
@@ -193,7 +204,7 @@ h1 {
 
 */
 
-table {
+.legend {
     position: absolute;
     color: black;
     background-color: white;
@@ -201,14 +212,15 @@ table {
     margin: 10px 0px 10px 10px;
 }
 
-td:last-child {
+.legend td:last-child {
     float: right;
 }
 
-td:first-child {
-    width: 1em;
+.legend td:first-child {
+    width: 2em;
+    height: 2em;
 }
 
-.info-box{
-margin:0px 0px 1em 1em;
+.info-box {
+    margin: 0px 0px 1em 1em;
 }
