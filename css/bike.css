@@ -15,8 +15,8 @@ body {
     /* http://wallpaperscraft.com/download/bicycle_field_clouds_silence_evening_decline_sky_61136/2560x1600
    */
 
-    background: transparent url('../sky2560x1600.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
+    background: transparent url('../img/sky1280x800.jpg') no-repeat center center fixed;
+    sky1280x800 -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
@@ -182,6 +182,9 @@ h1 {
 }
 
 @media (min-width: 1000px) {
+    body {
+        background: transparent url('../img/sky2560x1600.jpg') no-repeat center center fixed;
+    }
     #start {
         border-left: 3px solid green;
     }
