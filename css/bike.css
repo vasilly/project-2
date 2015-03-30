@@ -42,7 +42,7 @@ h1 {
     width: 100%;
     height: 500px;
     margin: 0 auto;
-    position:relative;
+    position: relative;
     /*border: 3px solid red;*/
 }
 
@@ -143,6 +143,7 @@ h1 {
     font-size: 2em;
     background-color: rgba(0, 0, 0, 0.6);
     /*border-radius: 5px;*/
+
     padding: 1em;
     margin: 0px 0px 1em 0;
 }
@@ -155,10 +156,8 @@ h1 {
     position: absolute;
     color: black;
     background-color: white;
-    border: 1px solid black;
     margin: 10px 0px 10px 10px;
     font-size: 2em;
-
 }
 
 .legend td:last-child {
@@ -170,19 +169,15 @@ h1 {
     height: 2em;
 }
 
-
-
 @media (min-width: 500px) {
-    #start {
-        border-left: 3px solid purple;
-    }
     .card .info button {
         width: 120px;
         height: 120px;
         font-size: 2em;
     }
-        .legend {
+    .legend {
         font-size: 1.4em;
+        border: 1px solid black;
     }
 }
 
@@ -212,17 +207,10 @@ h1 {
     .legend {
         font-size: 1.4em;
     }
-
-
-.info-box {
-    font-size: 1em;
+    .info-box {
+        font-size: 1em;
+    }
+    .info-box span {
+        font-size: 1.6em;
+    }
 }
-
-.info-box span {
-    font-size: 1.6em;
-}
-
-}
-
-
-
