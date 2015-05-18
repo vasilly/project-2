@@ -8,7 +8,7 @@ function table(arr, op) {
         nCols = arr.cols || arr.length,
         nRows = arr.length / nCols,
         klass = (op && op.class) || "reference",
-        tr, td, row, col, data_text, cap, menu
+        tr, td, row, col, data_text, cap, menu, caption
         //op&&op.title&&table.createCaption(op.caption)
         //w(op&&op.caption)
     caption = cr('CAPTION', '')
@@ -23,7 +23,7 @@ function table(arr, op) {
         tr = cr('TR')
         for (col = 0; col < nCols; col++) {
             data_text = a[row * nCols + col]
-                // print undef as 0
+                // print undef. as 0
             if (data_text === undefined) data_text = 0
             td = cr('TD', data_text)
             append(td, tr)
